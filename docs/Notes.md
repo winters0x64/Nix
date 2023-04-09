@@ -28,26 +28,32 @@ These  are some data types that are available in Nix
 
 ~ Integers, boot.kernel.sysctl."net.ipv4.tcp_keepalive_time" = 60;
 
-~ Sets, { services = {
+~ Sets, 
+```
+{ services = {
     httpd = {
       enable = true;
       adminAddr = "alice@example.org";
     };
   };
 }
+```
 The above set can also be referenced as services.enable = true, ie through a dot.
 
 ~ Lists, boot.kernelModules = [ "fuse" "kvm-intel" "coretemp" ]; or swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
 ~ let and in
+```
 let
   myVariable = "Hello, world!";
 in
   "The value of myVariable is: ${myVariable}"
+```
 
 let and in provide a way to create and use local variables in Nix expressions
 
 ~ Functions 
+```
 {
   services.httpd.virtualHosts =
     let
@@ -60,8 +66,10 @@ let and in provide a way to create and use local variables in Nix expressions
         "example.com" = (makeVirtualHost "/webroot/example.com");
       };
 }
+```
 makeVirtualHost is a function that takes a single argument webroot and returns the configuration for a virtual host.
 
+# Home Manager
 
 
 **Sources = NixOS manual,manpages**
