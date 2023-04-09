@@ -73,9 +73,14 @@ makeVirtualHost is a function that takes a single argument webroot and returns t
 
 A Nix channel is just a URL that points to a place that contains a set of Nix expressions and a manifest.
 
-```nix-channel --update```  This downloads and unpacks the Nix expressions in every channel .
+```nix-channel --update```  This downloads and unpacks the Nix expressions in every channel.
+
+## Profiles
 
 # Home Manager
+
+
+# Flakes
 
 
 **Sources = NixOS manual,manpages**
