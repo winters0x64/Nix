@@ -69,6 +69,12 @@ let and in provide a way to create and use local variables in Nix expressions
 ```
 makeVirtualHost is a function that takes a single argument webroot and returns the configuration for a virtual host.
 
+## Nix channels 
+
+A Nix channel is just a URL that points to a place that contains a set of Nix expressions and a manifest.
+
+```nix-channel --update```  This downloads and unpacks the Nix expressions in every channel .
+
 # Home Manager
 
 
