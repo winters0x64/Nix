@@ -50,9 +50,10 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the XFCE Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
+  # Enable the XFCE Desktop Environment
+  programs.hyprland.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -107,6 +108,9 @@
     neofetch
     discord
     git
+    kitty
+    wofi
+    waybar
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

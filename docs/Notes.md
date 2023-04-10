@@ -13,7 +13,7 @@ The default channel is stable channel so all you have to do to update the system
 
 ## 3) Garbage collection
 
-```nix-collect-garbage``` this cleans up your computer to remove all paths which are unreachable in the nix store,thus freeing space, the command ```nix-collect-garbage -d``` deletes all the older generations as well leaving only the current version behind hence freeing up more space, after this command run
+```sudo nix-collect-garbage``` this cleans up your computer to remove all paths which are unreachable in the nix store,thus freeing space, the command ```sudo nix-collect-garbage -d``` deletes all the older generations as well leaving only the current version behind hence freeing up more space, after this command run
 ```sudo nixos-rebuild switch``` to actually delete boot entries in grub or systemd-boot and free up space in the /boot/efi partition.
 ```sudo nix-env --list-generations --profile /nix/var/nix/profiles/system``` to list the generations on the system profile as different users have different profiles.
 ```df -h```  Not really a nix specific command but this can be handy to keep a watch on your partitions.
