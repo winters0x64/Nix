@@ -23,35 +23,90 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  # networking.networkmanager.enable = true;
+  networking.wireless.enable = true;
+  networking.wireless.userControlled.enable = true;
+  networking.wireless.networks."AMRITA-Connect"= {
+    auth = ''
+      key_mgmt=WPA-EAP
+      eap=PEAP
+      phase1="peaplabel=auto tls_disable_tlsv1_0=0 tls_disable_tlsv1_1=0 tls_disable_tlsv1_2=0 tls_ext_cert_check=0"
+      phase2="auth=MSCHAPV2"
+      identity="am.en.u4cse22004@am.students.amrita.edu"
+      password="CZNoWlaG"
+      '';
+    };
+    networking.wireless.networks."0x168"= {
   
+    };
+
   # Enable Bluetooth support
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  # Enable docker
+  virtualisation.docker.enable = true;
+
+  # Enable Power management
+  # if you already have boot.kernelParams config, just add "intel_pstate=disable" to the list
+  boot.kernelParams = [ "intel_pstate=disable" ];
+
+  services.tlp = {
+        enable = true;
+        settings = {
+          CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
+          CPU_SCALING_GOVERNOR_ON_BAT = "schedutil";
+
+          # Refer to the output of tlp-stat -p to determine the active scaling driver and available governors.
+          # https://linrunner.de/tlp/settings/processor.html#cpu-scaling-min-max-freq-on-ac-bat
+          CPU_SCALING_MIN_FREQ_ON_AC = 800000;
+          CPU_SCALING_MAX_FREQ_ON_AC = 1800000;
+          CPU_SCALING_MIN_FREQ_ON_BAT = 800000;
+          CPU_SCALING_MAX_FREQ_ON_BAT = 1800000;
+        };
+      };
+
+
+  # Enable MYSQL
+  services.mysql.enable = true;
+  services.mysql.package = pkgs.mariadb;
+  services.mysql.user = "winters";
+  services.longview.mysqlPassword = "root";
+  
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_IN";
-    LC_IDENTIFICATION = "en_IN";
-    LC_MEASUREMENT = "en_IN";
-    LC_MONETARY = "en_IN";
-    LC_NAME = "en_IN";
-    LC_NUMERIC = "en_IN";
-    LC_PAPER = "en_IN";
-    LC_TELEPHONE = "en_IN";
-    LC_TIME = "en_IN";
-  };
+ # i18n.extraLocaleSettings = {
+ #   LC_ADDRESS = "en_IN";
+ #   LC_IDENTIFICATION = "en_IN";
+ #   LC_MEASUREMENT = "en_IN";
+ #   LC_MONETARY = "en_IN";
+ #   LC_NAME = "en_IN";
+ #   LC_NUMERIC = "en_IN";
+ #   LC_PAPER = "en_IN";
+ #   LC_TELEPHONE = "en_IN";
+ #   LC_TIME = "en_IN";
+ #   LC_ALL = "en_IN";
+ #   LC_CTYPE  = "en_IN";
+ #   LANGUAGE = "en_IN"; 
+ # };
+ 
+ # Fonts
+ fonts.fonts = with pkgs; [
+   (nerdfonts.override { fonts = ["JetBrainsMono"]; })
+ ];
+
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the XFCE Desktop Environment
-  programs.hyprland.enable = true;
+  # Enable the XFCE and i3
+  #services.xserver.windowManager.i3.enable = true;
+  #services.xserver.windowManager.i3.package = pkgs.i3-gaps;
+  programs.hyprland.enable=true;
   services.xserver.desktopManager.xfce.enable = true;
   services.xserver.displayManager.sddm.enable = true;
 
@@ -108,9 +163,25 @@
     neofetch
     discord
     git
-    kitty
+    wezterm
+    alacritty
+#    burpsuite
+    nitrogen 
+    rofi
+    lm_sensors
+    picom
+    file
+    polybar
+    cava
+    i3blocks
+    nodejs
+    acpi
+    sysstat
+    zip
+    gcc
+    unzip
     wofi
-    waybar
+    (python38.withPackages(ps: with ps; [requests]))
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
