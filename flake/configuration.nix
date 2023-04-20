@@ -160,7 +160,6 @@
     wget
     vscode
     htop
-    neofetch
     discord
     git
     wezterm
@@ -181,6 +180,9 @@
     gcc
     unzip
     wofi
+    waybar
+    wbg
+    nitch
     (python38.withPackages(ps: with ps; [requests]))
   ];
 
