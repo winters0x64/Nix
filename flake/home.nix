@@ -18,4 +18,15 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # Setting the GTK theme
+  
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Materia-dark";
+      package = pkgs.materia-theme;
+    };
+  };
+  
 }

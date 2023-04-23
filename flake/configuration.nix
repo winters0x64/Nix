@@ -1,6 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# Winters
 
 { config, pkgs, ... }:
 
@@ -23,7 +21,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  # networking.networkmanager.enable = true;
+  #networking.networkmanager.enable = true;
   networking.wireless.enable = true;
   networking.wireless.userControlled.enable = true;
   networking.wireless.networks."AMRITA-Connect"= {
@@ -36,9 +34,9 @@
       password="CZNoWlaG"
       '';
     };
-    networking.wireless.networks."0x168"= {
-  
-    };
+  networking.wireless.networks."0x168"= {
+
+  };
 
   # Enable Bluetooth support
   hardware.bluetooth.enable = true;
@@ -153,29 +151,33 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  #Enable ZSH and features
+  programs.zsh.enable = true;
+  programs.zsh.ohMyZsh.enable = true;
+  programs.zsh.autosuggestions.enable = true;
+  programs.zsh.syntaxHighlighting.enable = true;
+  programs.zsh.ohMyZsh.theme = "half-life";
+  users.defaultUserShell = pkgs.zsh;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim 
     wget
     vscode
     htop
     discord
     git
-    wezterm
     alacritty
-#    burpsuite
+    burpsuite
     nitrogen 
     rofi
     lm_sensors
-    picom
     file
     polybar
     cava
     i3blocks
     nodejs
-    acpi
-    sysstat
     zip
     gcc
     unzip
@@ -183,6 +185,9 @@
     waybar
     wbg
     nitch
+    chromium
+    pipes
+    cbonsai
     (python38.withPackages(ps: with ps; [requests]))
   ];
 
