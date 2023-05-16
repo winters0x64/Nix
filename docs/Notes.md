@@ -77,6 +77,8 @@ A Nix channel is just a URL that points to a place that contains a set of Nix ex
 
 ## Profiles
 
+In nix there are different profiles like profile for the system, profiles per user, so the packages and configurations made by one user won't be available for the other user so if a user installs a package in the system package then it won't be available in the user profile.
+
 # Home Manager
 
 

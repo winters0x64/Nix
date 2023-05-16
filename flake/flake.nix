@@ -21,7 +21,7 @@
 
     in {
       nixosConfigurations = {
-        frosty = lib.nixosSystem{
+        frost = lib.nixosSystem{
           inherit system;
           modules = [
             ./configuration.nix

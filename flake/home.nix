@@ -19,8 +19,16 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # Enabling waybar
+  programs.waybar.enable = true;
+  programs.waybar.package = pkgs.waybar.overrideAttrs (oa: {
+    mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
+  });
+
+  # Enabling Zathura
+  programs.zathura.enable = true;
+
   # Setting the GTK theme
-  
   gtk = {
     enable = true;
     theme = {
