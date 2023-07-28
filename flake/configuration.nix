@@ -25,7 +25,7 @@
       phase1="peaplabel=auto tls_disable_tlsv1_0=0 tls_disable_tlsv1_1=0 tls_disable_tlsv1_2=0 tls_ext_cert_check=0"
       phase2="auth=MSCHAPV2"
       identity="am.en.u4cse22004@am.students.amrita.edu"
-      password="CZNoWlaG"
+      password="REDACTED"
       '';
     };
   networking.wireless.networks."0x168"= {
