@@ -86,3 +86,4 @@ In nix there are different profiles like profile for the system, profiles per us
 
 
 **Sources = NixOS manual,manpages**
+Just follow this amazing book : https://nixos-and-flakes.thiscute.world/
